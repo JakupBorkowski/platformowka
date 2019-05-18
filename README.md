@@ -8,7 +8,10 @@ Gra będzie polegała na przejsciu kilku lvl-i. Aby ukończyć każdy z nich trz
 
 3.**cFizyka** - dzięki niej umożliwię postaci skok
 
-Ponadto klasy takie jak
+Ponadto klasy takie jak:
+
 1.**cProstokat**
+
 2.**cPrzeszkoda**
+
 i różne tego typu do narysowania planszy i przeszkod, meta i pole startowe prawdopodobnie również będa takimi elementami, lecz w innej klasie aby przez dynamic_cast móc badać z nimi kolizję.

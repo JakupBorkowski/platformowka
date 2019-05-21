@@ -14,6 +14,10 @@ Ponadto klasy takie jak:
 
 2.**cPrzeszkoda**
 
+3.**cFigura**(zawiera cProstokat, cOkrag oraz inne potrzebne prymitywy geometryczne)
+
+4.**cOkrag**
+
 i różne tego typu do narysowania planszy i przeszkod, meta i pole startowe prawdopodobnie również będa takimi elementami, lecz w innej klasie aby przez dynamic_cast móc badać z nimi kolizję.
 
 

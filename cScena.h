@@ -7,7 +7,6 @@
 
 //bindingi dla callbacków
 void resize_binding(int width, int height);
-void idle_binding();
 void display_binding();
 void key_binding(unsigned char key, int x, int y);
 void timer_binding(int i);

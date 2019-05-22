@@ -11,8 +11,11 @@ public:
 	cOkrag(float radius, float x, float y) :cFigura(x, y), radius_(radius) {
 		//ustaw_geometria(x, y, -radius, -radius, radius, radius);
 	}
-	void rysuj();
 
+	void rysuj();
+	void turnRight();
+	void turnLeft();
+	void skok();
 
 
 };

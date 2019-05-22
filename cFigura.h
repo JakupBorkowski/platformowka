@@ -9,7 +9,13 @@ protected:
 public:
 	cFigura(double x = 0.0, double y = 0.0);
 	virtual void rysuj() = 0;
-
+	void turnRight();
+	void turnLeft();
+	double Y()
+	{
+		return y_;
+	}
+	void skok();
 };
 
 

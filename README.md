@@ -28,3 +28,6 @@ Pierwotnie zakładam, sterowanie będzie odbywało się za pomocą przycisków w
 **GRAFIKA:**
 
 Jeżeli chodzi o grafikę nie mam pomysłu jak to rozwiązać, ale znalezienie dodatkowej biblioteki powinno rozwiązać ten problem.
+
+**Gra na której się wzoruje.**
+https://www.youtube.com/watch?v=2t0wjukqtdE

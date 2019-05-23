@@ -1,8 +1,8 @@
 #pragma once
 #include "cProstokat.h"
 #include "cOkrag.h"
-#include "cPrzeszkoda.h"
 #include "cPostac.h"
+#include "cMeta.h"
 #include <vector>
 
 //bindingi dla callbacków

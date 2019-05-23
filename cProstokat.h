@@ -9,8 +9,6 @@ class cProstokat : public cFigura {
 public:
 	cProstokat(double a, double b, double x, double y);
 	void rysuj();
-	void turnRight();
-	void turnLeft();
-	void skok();
+	
 
 };

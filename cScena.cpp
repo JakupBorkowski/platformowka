@@ -5,11 +5,15 @@
 
 int score = 0;
 bool jump=false;
+cPostac *p2;
+int zdrowie;
 cScena::cScena() : active_id_(0) {
 	//postac
-	figury_.push_back(new cPostac(0.15,2.8,2.0));
-	figury_[0]->ustaw_fizyka(6 * 1E-7, -90);
-	figury_[0]->ustaw_predkosc(3e-7, 0);
+	figury_.push_back(new cPostac(0.15,-1.9,-1));
+	figury_[0]->ustaw_fizyka(9 * 1E-7, -90);
+	
+	//figury_[0]->ustaw_fizyka(4 * 1E-7, -90);
+	//figury_[0]->ustaw_predkosc(3e-7, 0);
 	//ruchome platformy
 	figury_.push_back(new cProstokat(1, 0.1, -0.5, -0.5));
 	figury_[1]->ustaw_predkosc(3e-4, 0);
@@ -26,7 +30,8 @@ cScena::cScena() : active_id_(0) {
 	figury_.push_back(new cProstokat(2, 0.15, -2.3, -0.5));
 	figury_.push_back(new cProstokat(1.2, 0.15, 1.2, -0.5));
 	
-	
+	//kolce 
+	figury_.push_back(new cKolce(0, -2.5));
 	
 	//pkt-y
 
@@ -41,7 +46,8 @@ cScena::cScena() : active_id_(0) {
 	//figury_.push_back(new cProstokat(0.25, 0.25, -0.7, -0.7));
 	
 
-
+	p2 = dynamic_cast<cPostac*>(figury_[0]);
+	zdrowie = p2->zwrocHP();
 }
 
 void cScena::motion(int x, int y)
@@ -64,6 +70,29 @@ void cScena::resize(int width, int height) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
+int acc = 0;
+
+void cScena::key(unsigned char key, int x, int y) {
+	switch (key) {
+		//tu brakuje kodu na klawisze 
+	case  'w':
+		jump = true;
+		break;
+	case  's':
+		//figury_[0]->ustaw_fizyka(9.81*1E-8, 90);
+		jump = false;
+		break;
+	case 'a':
+		figury_[0]->turnRight();
+
+		break;
+	case 'd':
+		figury_[0]->turnLeft();
+		break;
+	}
+
+
+}
 
 void cScena::timer() {
 	//int current_time = getTickCount();
@@ -71,43 +100,46 @@ void cScena::timer() {
 	//std::cout<<current_time<<std::endl;
 	//std::cout.flush();
 	//skakanie...
-	/*if (jump)
-	{
-		figury_[0]->aktualizuj(GetTickCount());
-		for (auto it = figury_.begin(); it != figury_.end(); it++)
-		{
-			if (figury_[0]->kolizja(**it))
-			{
-				figury_[0]->ustaw_fizyka(9 * 1E-7, 90);
-				if (figury_[0]->kolizja(**it))
-				{
-					figury_[0]->ustaw_fizyka(0, -90);
-					jump = false;
-				}
-				break;
-			}
-			
-			
-		}
+	
 		
-	}*/
+	
 
-
-
-
-
+		
 
 	figury_[0]->aktualizuj(GetTickCount());
-	for (auto it = figury_.begin(); it != figury_.end(); it++)
-	{
-		figury_[0]->kolizja(**it);
-	}
 
 
 	for (auto it = figury_.begin(); it != figury_.end(); it++)
 	{
 		figury_[0]->kolizja(**it);
 	}
+
+	//wejscie na kolec i utrata zdrowia, (POBUGOWANE)
+	//po utracie wszystkich punktow zdrowia wylaczenie gry
+	for (auto it = figury_.begin(); it != figury_.end(); it++)
+	{
+		if (figury_[0]->kolizja(**it))
+		{
+			cKolce *p1;
+			p1 = dynamic_cast<cKolce*>(*it);
+			if (p1)
+			{
+				zdrowie -= 1;
+				std::cout << "twoje hp to: " << zdrowie << std::endl;
+			}
+			if (zdrowie == 0)
+			{
+				char _score[10];
+				_itoa_s(score, _score, 10);
+				char text[60] = "Points : ";
+				strcat_s(text, _score);
+				MessageBox(NULL, text, "Straci³eœ wszytkie ¿ycia, twój wynik to: ", 0);
+				exit(0);
+				break;
+			}
+		}
+	}
+
 	//zbieranie i zliczanie monet
 	for (auto it = figury_.begin(); it != figury_.end(); it++)
 	{
@@ -210,28 +242,6 @@ void cScena::init(int argc, char **argv, const char *window_name) {
 }
 
 
-
-void cScena::key(unsigned char key, int x, int y) {
-	switch (key) {
-	//tu brakuje kodu na klawisze 
-	case  'w':
-		jump = true;
-		break;
-	case  's':
-		//figury_[0]->ustaw_fizyka(9.81*1E-8, 90);
-		jump = false;
-		break;
-	case 'd':
-		figury_[0]->turnRight();
-		
-		break;
-	case 'a':
-		figury_[0]->turnLeft();
-		break;
-	}
-
-
-}
 
 cScena::~cScena() {
 	//destruktor 

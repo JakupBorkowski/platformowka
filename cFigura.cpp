@@ -8,19 +8,16 @@ cFigura::cFigura(double x, double y) {
 }
 void cFigura::turnLeft()
 {
-	x_ -= 0.1;
+	ustaw_predkosc(3e-3, 0);
 }
 void cFigura::turnRight()
 {
-	x_ += 0.1;
+	ustaw_predkosc(3e-3, -180);
 }
+
+
+
+
 void cFigura::skok()  {
-	if (y_ <y_+1)
-	{
-		y_ += 0.1;
-	}
-	else if (y_ > y_-1  )
-	{
-		y_ -= 0.1;
-	}
+	
 }

@@ -9,6 +9,6 @@ class cPostac :public cFigura {
 public:
 	cPostac(float radius, float x, float y);
 	void rysuj();
-	
+	int zwrocHP();
 
 };

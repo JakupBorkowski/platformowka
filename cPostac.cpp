@@ -1,9 +1,12 @@
 #include"cPostac.h"
+int cPostac::zwrocHP()
+{
+	return hp_;
+}
 
 
 
-
-cPostac::cPostac(float radius, float x, float y) :cFigura(x, y), radius_(radius) {
+cPostac::cPostac(float radius, float x, float y) :cFigura(x, y), radius_(radius), hp_(3) {
 	ustaw_geometria(x, y, -radius, -radius, radius, radius);
 }
 void cPostac::rysuj() {

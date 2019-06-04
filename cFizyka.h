@@ -51,6 +51,7 @@ public:
 
 	virtual int kolizja(cFizyka &X); //wykrywanie kolizji z innym obiektem (funkcja przekazuje 1 gdy jest kolizja 0 gdy brak)
 	virtual int kolizjaJeden(cFizyka &X); //wykrywanie kolizji z innym obiektem (funkcja przekazuje 1 gdy jest kolizja 0 gdy brak)
+	virtual int kolizjaSkok(cFizyka &X);
 	int w_prosokacie(float _x, float _y,
 		const cFizyka &X);//wykrywa czy dany punkt (_x,_y) znajduje sie wewnatrz pewnego kwadratu
 	float odleglosc(float _x, float _y, float _xa, float _ya, float _xb,

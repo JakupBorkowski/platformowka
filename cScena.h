@@ -3,6 +3,7 @@
 #include "cOkrag.h"
 #include "cPostac.h"
 #include "cMeta.h"
+#include "cKolce.h"
 #include <vector>
 
 //bindingi dla callbacków

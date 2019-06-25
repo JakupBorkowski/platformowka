@@ -1,11 +1,11 @@
-#include "cMeta.h"
+#include <GL/freeglut.h>
+#include "cObwiednia.h"
 
-
-cMeta::cMeta(double a, double b, double x, double y) : cFigura(x, y), a_(a), b_(b) {
+cObwiednia::cObwiednia(double a, double b, double x, double y) : cFigura(x, y), a_(a), b_(b) {
 	ustaw_geometria(x, y, -a / 2, -b / 2, a / 2, b / 2);
 }
 
-void cMeta::rysuj() {
+void cObwiednia::rysuj() {
 	glPushMatrix();
 
 	glTranslated(x_, y_, 0.0);
@@ -13,7 +13,7 @@ void cMeta::rysuj() {
 	glRotated(0, 0.0, 1.0, 0.0);
 	glRotated(0, 0.0, 0.0, 1.0);
 
-	glColor3d(0.5 ,0.5, 0);
+	glColor3d(1, 1, 1);
 
 	glBegin(GL_POLYGON);
 	{
@@ -25,3 +25,4 @@ void cMeta::rysuj() {
 	glEnd();
 	glPopMatrix();
 }
+

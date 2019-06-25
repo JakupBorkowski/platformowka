@@ -106,7 +106,9 @@ int cFizyka::kolizja(cFizyka &X) //wykrywanie kolizji z innym obiektem (funkcja 
 
 	return kolizja;
 }
-
+extern  int acc;
+extern int accumulator;
+extern int ax;
 int cFizyka::kolizjaSkok(cFizyka &X) //wykrywanie kolizji z innym obiektem (funkcja przekazuje 1 gdy jest kolizja 0 gdy brak)
 {
 	//jesli wystepuje kolizja to przynajmniej jeden z wierzcholkow musi zawierac sie wewnatrz
@@ -125,7 +127,73 @@ int cFizyka::kolizjaSkok(cFizyka &X) //wykrywanie kolizji z innym obiektem (funk
 	//obsluga kolizji
 	if (kolizja)
 	{
-		y_=X.y_;
+		
+		y_=X.y_+0.115;
+		
+	/*	if (accumulator == 1)
+		{
+			ustaw_predkosc(v_, -180);
+		}
+		else if (accumulator == 2)
+		{
+			ustaw_predkosc(v_, 0);
+		}*/
+		acc = 0;
+		
+		
+	}
+
+	return kolizja;
+}
+void cFizyka::powrotNaStart()
+{
+	x_ = 1.9;
+	y_ = -2.5;
+}
+int cFizyka::kolizjaSkok2(cFizyka &X) //wykrywanie kolizji z innym obiektem (funkcja przekazuje 1 gdy jest kolizja 0 gdy brak)
+{
+	//jesli wystepuje kolizja to przynajmniej jeden z wierzcholkow musi zawierac sie wewnatrz
+	//sprawdzenie czy ktorys z wierzcholkow obiektu nie zawiera sie w obiekcie sprawdzanym
+	int kolizja = 0;
+	if (w_prosokacie(x_ + granica_.xa, y_ + granica_.ya, X) == 1) kolizja = 1;
+	else if (w_prosokacie(x_ + granica_.xa, y_ + granica_.yb, X) == 1) kolizja = 1;
+	else if (w_prosokacie(x_ + granica_.xb, y_ + granica_.yb, X) == 1) kolizja = 1;
+	else if (w_prosokacie(x_ + granica_.xb, y_ + granica_.ya, X) == 1) kolizja = 1;
+	//odworcenie sprawdzania
+	else if (w_prosokacie(X.x_ + X.granica_.xa, X.y_ + X.granica_.ya, *this) == 1) kolizja = 1;
+	else if (w_prosokacie(X.x_ + X.granica_.xa, X.y_ + X.granica_.yb, *this) == 1) kolizja = 1;
+	else if (w_prosokacie(X.x_ + X.granica_.xb, X.y_ + X.granica_.yb, *this) == 1) kolizja = 1;
+	else if (w_prosokacie(X.x_ + X.granica_.xb, X.y_ + X.granica_.ya, *this) == 1) kolizja = 1;
+	int accj = 0;
+	//obsluga kolizji
+	if (kolizja)
+	{
+		x_ = X.x_+0.15;
+		ustaw_predkosc(0,  alfa_v_);
+	}
+
+	return kolizja;
+}
+int cFizyka::kolizjaSkok3(cFizyka &X) //wykrywanie kolizji z innym obiektem (funkcja przekazuje 1 gdy jest kolizja 0 gdy brak)
+{
+	//jesli wystepuje kolizja to przynajmniej jeden z wierzcholkow musi zawierac sie wewnatrz
+	//sprawdzenie czy ktorys z wierzcholkow obiektu nie zawiera sie w obiekcie sprawdzanym
+	int kolizja = 0;
+	if (w_prosokacie(x_ + granica_.xa, y_ + granica_.ya, X) == 1) kolizja = 1;
+	else if (w_prosokacie(x_ + granica_.xa, y_ + granica_.yb, X) == 1) kolizja = 1;
+	else if (w_prosokacie(x_ + granica_.xb, y_ + granica_.yb, X) == 1) kolizja = 1;
+	else if (w_prosokacie(x_ + granica_.xb, y_ + granica_.ya, X) == 1) kolizja = 1;
+	//odworcenie sprawdzania
+	else if (w_prosokacie(X.x_ + X.granica_.xa, X.y_ + X.granica_.ya, *this) == 1) kolizja = 1;
+	else if (w_prosokacie(X.x_ + X.granica_.xa, X.y_ + X.granica_.yb, *this) == 1) kolizja = 1;
+	else if (w_prosokacie(X.x_ + X.granica_.xb, X.y_ + X.granica_.yb, *this) == 1) kolizja = 1;
+	else if (w_prosokacie(X.x_ + X.granica_.xb, X.y_ + X.granica_.ya, *this) == 1) kolizja = 1;
+	int accj = 0;
+	//obsluga kolizji
+	if (kolizja)
+	{
+		x_ = X.x_ - 0.2;
+		ustaw_predkosc(0, alfa_v_);
 	}
 
 	return kolizja;
@@ -145,6 +213,28 @@ int cFizyka::kolizjaJeden(cFizyka &X) //wykrywanie kolizji z innym obiektem (fun
 	else if (w_prosokacie(X.x_ + X.granica_.xb, X.y_ + X.granica_.yb, *this) == 1) kolizja = 1;
 	else if (w_prosokacie(X.x_ + X.granica_.xb, X.y_ + X.granica_.ya, *this) == 1) kolizja = 1;
 
+	return kolizja;
+}
+int cFizyka::kolizjaDwa(cFizyka &X) //wykrywanie kolizji z innym obiektem (funkcja przekazuje 1 gdy jest kolizja 0 gdy brak)
+{
+	//jesli wystepuje kolizja to przynajmniej jeden z wierzcholkow musi zawierac sie wewnatrz
+	//sprawdzenie czy ktorys z wierzcholkow obiektu nie zawiera sie w obiekcie sprawdzanym
+	int kolizja = 0;
+	if (w_prosokacie(x_ + granica_.xa, y_ + granica_.ya, X) == 1) kolizja = 1;
+	else if (w_prosokacie(x_ + granica_.xa, y_ + granica_.yb, X) == 1) kolizja = 1;
+	else if (w_prosokacie(x_ + granica_.xb, y_ + granica_.yb, X) == 1) kolizja = 1;
+	else if (w_prosokacie(x_ + granica_.xb, y_ + granica_.ya, X) == 1) kolizja = 1;
+	//odworcenie sprawdzania
+	else if (w_prosokacie(X.x_ + X.granica_.xa, X.y_ + X.granica_.ya, *this) == 1) kolizja = 1;
+	else if (w_prosokacie(X.x_ + X.granica_.xa, X.y_ + X.granica_.yb, *this) == 1) kolizja = 1;
+	else if (w_prosokacie(X.x_ + X.granica_.xb, X.y_ + X.granica_.yb, *this) == 1) kolizja = 1;
+	else if (w_prosokacie(X.x_ + X.granica_.xb, X.y_ + X.granica_.ya, *this) == 1) kolizja = 1;
+	if (kolizja)
+	{
+
+		x_ = X.x_ + 0.115;
+
+	}
 	return kolizja;
 }
 int cFizyka::w_prosokacie(float _x, float _y, const cFizyka &X)//wykrywa czy dany punkt (_x,_y) znajduje sie wewnatrz pewnego kwadratu

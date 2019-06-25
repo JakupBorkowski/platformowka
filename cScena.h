@@ -4,6 +4,11 @@
 #include "cPostac.h"
 #include "cMeta.h"
 #include "cKolce.h"
+#include "cWall.h"
+#include "cWall2.h"
+#include "cBonus.h"
+#include"cPomoc.h"
+#include "cObwiednia.h"
 #include <vector>
 
 //bindingi dla callbacków
@@ -15,6 +20,7 @@ void motion_binding(int x, int y);
 
 class cScena {
 	std::vector<cFigura*> figury_;
+	std::vector<cFigura*> lvlOne;
 	int active_id_;
 public:
 	cScena();
@@ -26,5 +32,6 @@ public:
 	void set_callbacks();
 	void key(unsigned char key, int x, int y);
 	void motion(int x, int y);
+	void lvl_2();
 
 };

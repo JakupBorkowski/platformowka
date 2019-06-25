@@ -11,6 +11,7 @@ public:
 	virtual void rysuj() = 0;
 	void turnRight();
 	void turnLeft();
+	void stop();
 	double Y()
 	{
 		return y_;
